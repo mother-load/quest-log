@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0d12">
+  <title>冒険の書 | メンターとの成長記録</title>
+  <meta name="description" content="メンターから受けたクエスト（課題）と、自分の成長を RPG 風に記録するページです。">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="demo-banner" id="demo-banner" hidden>デモ表示です（架空のデータ）。<a href="./">本物の記録に戻る</a></div>
+
+  <div class="shell">
+    <header class="top">
+      <h1 class="logo">冒険の書</h1>
+      <nav class="actions">
+        <a class="btn" id="new-training" href="#" target="_blank" rel="noopener">＋ 自主トレを記録</a>
+        <a class="btn btn-gold" id="new-quest" href="#" target="_blank" rel="noopener">＋ クエストを出す</a>
+      </nav>
+    </header>
+
+    <main id="app">
+      <p class="loading">冒険の書をひらいています…</p>
+    </main>
+
+    <footer class="foot">
+      <p id="updated"></p>
+      <p>クエストの受け渡しは GitHub の Issue で行い、このページはその記録を自動で集めて表示しています。
+        <a id="data-link" href="data.json">記録データ（data.json）</a> ・ <a id="repo-link" href="#">GitHub のリポジトリ</a> ・ <a href="?demo">デモを見る</a></p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-10-20T12:00:00Z",
+  "repo": "mother-load/quest-log",
+  "player": "mother-load",
+  "playerName": "見習い",
+  "mentorName": "メンター",
+  "mentors": ["demo-mentor"],
+  "quests": [
+    {
+      "number": 1, "title": "練習用のレポートサイトを公開せよ", "url": "#", "author": "demo-mentor",
+      "createdAt": "2026-10-14T09:00:00Z", "closedAt": "2026-10-16T13:00:00Z", "closedBy": "demo-mentor",
+      "skill": "Web制作", "detail": "（デモ）GitHub Pages で、AI が自動更新するレポートサイトを公開する。",
+      "xp": 300, "rank": 3, "deadline": "2026-10-16", "status": "cleared", "overdue": false, "onTime": true,
+      "submissions": 1, "lastSubmission": "（デモ）公開しました。URL はこちらです。",
+      "mentorWords": "（デモ）期限内に公開できていて良いですね。権利表記まで気を配れていました。"
+    },
+    {
+      "number": 2, "title": "AI に作業を任せる手順を説明せよ", "url": "#", "author": "demo-mentor",
+      "createdAt": "2026-10-16T14:00:00Z", "closedAt": "2026-10-18T10:00:00Z", "closedBy": "demo-mentor",
+      "skill": "AI活用", "detail": "（デモ）AI にどこまで任せ、どこを自分で判断したかをまとめる。",
+      "xp": 200, "rank": 2, "deadline": null, "status": "cleared", "overdue": false, "onTime": false,
+      "submissions": 2, "lastSubmission": "（デモ）制作報告にまとめました。",
+      "mentorWords": "（デモ）判断した部分が明確で読みやすかったです。"
+    },
+    {
+      "number": 5, "title": "身近な課題を1つ調べて提案せよ", "url": "#", "author": "demo-mentor",
+      "createdAt": "2026-10-19T09:00:00Z", "closedAt": null, "closedBy": null,
+      "skill": "調査・分析", "detail": "（デモ）身の回りの不便を1つ選び、調べて改善案を出す。",
+      "xp": 500, "rank": 4, "deadline": "2026-10-31", "status": "submitted", "overdue": false, "onTime": false,
+      "submissions": 1, "lastSubmission": "（デモ）下書きを提出します。確認をお願いします。", "mentorWords": null
+    },
+    {
+      "number": 6, "title": "今週の学びを300字で書け", "url": "#", "author": "demo-mentor",
+      "createdAt": "2026-10-17T09:00:00Z", "closedAt": null, "closedBy": null,
+      "skill": "文章・発信", "detail": "（デモ）1週間で学んだことを300字でまとめる。",
+      "xp": 100, "rank": 1, "deadline": "2026-10-19", "status": "active", "overdue": true, "onTime": false,
+      "submissions": 0, "lastSubmission": null, "mentorWords": null
+    }
+  ],
+  "trainings": [
+    { "number": 3, "title": "Git の基本操作を練習", "url": "#", "author": "mother-load", "createdAt": "2026-10-17T11:00:00Z", "closedAt": "2026-10-17T12:00:00Z", "closedBy": "mother-load", "skill": "Web制作", "detail": "（デモ）", "xp": 20, "done": true },
+    { "number": 4, "title": "配色の考え方を調べた", "url": "#", "author": "mother-load", "createdAt": "2026-10-18T20:00:00Z", "closedAt": "2026-10-18T21:00:00Z", "closedBy": "mother-load", "skill": "企画・デザイン", "detail": "（デモ）", "xp": 10, "done": true },
+    { "number": 7, "title": "プロンプトの書き方を比べた", "url": "#", "author": "mother-load", "createdAt": "2026-10-19T21:00:00Z", "closedAt": "2026-10-19T22:30:00Z", "closedBy": "mother-load", "skill": "AI活用", "detail": "（デモ）", "xp": 30, "done": true }
+  ]
+}

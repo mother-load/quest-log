@@ -1,0 +1,247 @@
+/* ===== 色と文字 ===== */
+:root {
+  color-scheme: dark;
+  --bg: #0b0d12;
+  --panel: #141821;
+  --panel-2: #1b202b;
+  --line: #2a3142;
+  --text: #e8eaf0;
+  --muted: #8a93a6;
+  --gold: #f2c14e;      /* 経験値・報酬 */
+  --gold-dim: #6b5a2a;
+  --blue: #5aa9ff;      /* リンク */
+  --warn: #ff7a6b;      /* 期限切れ */
+  --pixel: "DotGothic16", "Noto Sans JP", sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans JP", "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.shell { max-width: 760px; margin: 0 auto; padding: 0 16px 48px; }
+
+.demo-banner {
+  background: var(--gold);
+  color: #1a1400;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+}
+.demo-banner a { color: #1a1400; text-decoration: underline; }
+
+/* ===== ヘッダー ===== */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 24px 0 16px;
+}
+.logo {
+  margin: 0;
+  font-family: var(--pixel);
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-shadow: 0 2px 0 var(--gold-dim);
+}
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.btn {
+  display: inline-block;
+  font-family: var(--pixel);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  padding: 6px 14px;
+  line-height: 1.4;
+}
+.btn:hover { text-decoration: none; border-color: var(--muted); }
+.btn-gold { color: #1a1400; background: var(--gold); border-color: var(--gold); }
+.btn-gold:hover { border-color: #fff3c4; }
+.btn.small { font-size: 13px; padding: 3px 10px; }
+
+/* ===== パネル（ゲームのウィンドウ風） ===== */
+.panel {
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  animation: pop 0.4s ease both;
+}
+.panel h2 {
+  margin: 0 0 12px;
+  font-family: var(--pixel);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--gold);
+}
+.panel h2::before { content: "▶ "; font-size: 12px; vertical-align: 2px; }
+@keyframes pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.muted, .loading { color: var(--muted); margin: 0; }
+.empty p { margin: 0 0 12px; }
+
+/* ===== ステータス ===== */
+.status { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; }
+.avatar {
+  width: 72px;
+  height: 72px;
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  background: var(--panel-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--pixel);
+  font-size: 34px;
+  color: var(--gold);
+}
+.player { margin: 0; font-weight: 700; font-size: 18px; }
+.handle { color: var(--muted); font-weight: 400; font-size: 13px; }
+.title-line { margin: 0 0 6px; font-family: var(--pixel); }
+.lv { color: var(--gold); font-size: 22px; }
+.rank-title { font-size: 16px; }
+.xpbar {
+  height: 14px;
+  background: #0a0c10;
+  border: 2px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.xpfill {
+  display: block;
+  height: 100%;
+  width: var(--w);
+  background: repeating-linear-gradient(90deg, var(--gold) 0 10px, #e0ac34 10px 12px);
+  transform-origin: left;
+  animation: grow 1.2s ease 0.2s both;
+}
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.xptext { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+.counts {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 4px 0 0;
+  border-top: 1px dashed var(--line);
+  padding-top: 10px;
+}
+.counts div { text-align: center; }
+.counts dt { font-size: 12px; color: var(--muted); }
+.counts dd { margin: 0; font-family: var(--pixel); font-size: 24px; }
+
+/* ===== スキル ===== */
+.skills { list-style: none; margin: 0; padding: 0; }
+.skills li {
+  display: grid;
+  grid-template-columns: 8em 1fr 3.5em;
+  gap: 10px;
+  align-items: center;
+  margin: 6px 0;
+  font-size: 14px;
+}
+.skill-track { height: 10px; background: #0a0c10; border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
+.skill-fill { display: block; height: 100%; width: var(--w); background: var(--blue); transform-origin: left; animation: grow 1s ease 0.3s both; }
+.skill-val { text-align: right; font-family: var(--pixel); color: var(--muted); }
+
+/* ===== クエスト ===== */
+.quests { display: grid; gap: 12px; }
+.quest {
+  background: var(--panel-2);
+  border: 2px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+  padding: 12px 14px;
+}
+.quest-submitted { border-left-color: var(--blue); }
+.quest-cleared { border-left-color: var(--muted); opacity: 0.9; }
+.quest.is-overdue { border-left-color: var(--warn); }
+.quest-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 12px; }
+.quest-rank { color: var(--gold); letter-spacing: 1px; }
+.dim { color: #3a4152; }
+.quest-badge { border: 1px solid var(--line); border-radius: 3px; padding: 0 6px; color: var(--muted); }
+.quest-badge.warn { color: var(--warn); border-color: var(--warn); }
+.quest h3 { margin: 4px 0; font-size: 17px; line-height: 1.5; }
+.quest h3 a { color: var(--text); }
+.quest-detail { margin: 0 0 6px; font-size: 14px; color: #c9cedb; }
+.quest-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; font-size: 13px; color: var(--muted); }
+.quest-meta b { color: var(--gold); font-weight: 700; }
+.quote {
+  margin: 8px 0 0;
+  padding: 6px 10px;
+  font-size: 13px;
+  background: #10141c;
+  border-radius: 3px;
+  color: #c9cedb;
+}
+.quote.mentor { border-left: 3px solid var(--gold); }
+.quest-action { margin: 10px 0 0; }
+.cleared { margin-top: 14px; }
+.cleared summary { cursor: pointer; color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+
+/* ===== 冒険の書 ===== */
+.log { list-style: none; margin: 0; padding: 0; }
+.log li {
+  display: grid;
+  grid-template-columns: 3.5em 1fr auto;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14px;
+}
+.log li:last-child { border-bottom: 0; }
+.log-day { font-family: var(--pixel); color: var(--muted); }
+.log-xp { font-family: var(--pixel); color: var(--gold); white-space: nowrap; }
+.log-levelup { color: var(--gold); font-family: var(--pixel); }
+.log-levelup span:nth-child(2) { grid-column: 2 / -1; }
+.log-quest a { color: var(--text); }
+.log-training a { color: #c9cedb; }
+
+/* ===== 実績 ===== */
+.badges { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.badge {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 8px;
+  padding: 10px;
+  border: 2px dashed var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+}
+.badge.got { border-style: solid; border-color: var(--gold-dim); color: var(--text); background: #1d1a10; }
+.badge-icon { grid-row: span 2; font-size: 20px; line-height: 1.2; }
+.badge.got .badge-icon { color: var(--gold); }
+.badge-name { font-family: var(--pixel); font-size: 15px; }
+.badge-desc { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+
+/* ===== フッター ===== */
+.foot { color: var(--muted); font-size: 12px; margin-top: 24px; }
+.foot p { margin: 0 0 6px; }
+
+@media (max-width: 560px) {
+  .logo { font-size: 24px; }
+  .status { grid-template-columns: 1fr; text-align: center; }
+  .avatar { margin: 0 auto; }
+  .skills li { grid-template-columns: 6.5em 1fr 3em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; }
+}

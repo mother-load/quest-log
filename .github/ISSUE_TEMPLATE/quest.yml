@@ -1,0 +1,61 @@
+name: クエスト（メンターからの課題）
+description: メンターが課題を出すときに使います。メンターがこの Issue を閉じるとクエストクリアになり、経験値が入ります。
+title: "【クエスト】"
+labels: ["quest"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        タイトルの「【クエスト】」の後ろに、課題の名前を書いてください。
+        提出はこの Issue へのコメントで行います。クリアと判断したら、ひとことコメントを書いてから Issue を閉じてください（そのコメントが「メンターの言葉」として記録に残ります）。
+  - type: textarea
+    id: detail
+    attributes:
+      label: 内容
+      description: 何をすればクリアか
+      placeholder: 例：練習用の Web サイトを作り、GitHub Pages で公開する
+    validations:
+      required: true
+  - type: dropdown
+    id: xp
+    attributes:
+      label: 報酬（経験値）
+      options:
+        - "100"
+        - "200"
+        - "300"
+        - "500"
+        - "1000"
+      default: 1
+    validations:
+      required: true
+  - type: dropdown
+    id: skill
+    attributes:
+      label: スキル
+      options:
+        - Web制作
+        - AI活用
+        - 文章・発信
+        - 企画・デザイン
+        - 調査・分析
+        - その他
+    validations:
+      required: true
+  - type: dropdown
+    id: rank
+    attributes:
+      label: 難易度
+      options:
+        - "★"
+        - "★★"
+        - "★★★"
+        - "★★★★"
+        - "★★★★★"
+      default: 1
+  - type: input
+    id: deadline
+    attributes:
+      label: 期限
+      description: YYYY-MM-DD の形で（なければ空欄）
+      placeholder: "2026-10-31"

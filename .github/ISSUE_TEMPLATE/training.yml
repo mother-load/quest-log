@@ -1,0 +1,38 @@
+name: 自主トレ（自分で取り組んだこと）
+description: 自分で学んだこと・試したことを記録します。自分で閉じると少しだけ経験値が入ります。
+title: "【自主トレ】"
+labels: ["training"]
+body:
+  - type: markdown
+    attributes:
+      value: タイトルの「【自主トレ】」の後ろに、取り組んだことを短く書いてください。書き終えたら、この Issue を自分で閉じると記録されます。
+  - type: textarea
+    id: detail
+    attributes:
+      label: やったこと・学んだこと
+    validations:
+      required: true
+  - type: dropdown
+    id: xp
+    attributes:
+      label: 経験値
+      description: 自分で選ぶ目安（30分くらい→10、半日→20、1日以上→30）
+      options:
+        - "10"
+        - "20"
+        - "30"
+    validations:
+      required: true
+  - type: dropdown
+    id: skill
+    attributes:
+      label: スキル
+      options:
+        - Web制作
+        - AI活用
+        - 文章・発信
+        - 企画・デザイン
+        - 調査・分析
+        - その他
+    validations:
+      required: true

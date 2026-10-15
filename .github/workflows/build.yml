@@ -1,0 +1,53 @@
+# Issue が増えたり閉じられたりするたびに、データを集め直してサイトを公開し直す
+name: 冒険の書を更新
+
+on:
+  push:
+    branches: [main]
+  issues:
+    types: [opened, edited, closed, reopened, deleted, transferred]
+  issue_comment:
+    types: [created, edited, deleted]
+  schedule:
+    - cron: "0 15 * * *" # 毎日 0:00（日本時間）。期限切れの表示を更新するため
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: サイトのファイルを用意
+        run: |
+          mkdir -p _site
+          cp -r site/. _site/
+      - name: Issue からデータを集める
+        run: node scripts/build-data.mjs _site/data.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
