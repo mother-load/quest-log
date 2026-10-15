@@ -90,7 +90,8 @@ for (const { issue, type, comments, closedBy } of candidates) {
   const f = parseForm(issue.body);
   const base = {
     number: issue.number,
-    title: issue.title.replace(/^【(クエスト|自主トレ)】\s*/, '') || '（無題）',
+    // タイトルが【自主トレ】だけのときは、本文の書き出しを見出しにする
+    title: issue.title.replace(/^【(クエスト|自主トレ)】\s*/, '') || short(f['内容'] || f['やったこと・学んだこと'], 30) || '（無題）',
     url: issue.html_url,
     author: issue.user.login,
     createdAt: issue.created_at,
