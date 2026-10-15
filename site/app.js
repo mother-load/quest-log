@@ -74,6 +74,7 @@
     var level = levelOf(xp);
     var cur = needFor(level), next = needFor(level + 1);
     var pct = Math.round((xp - cur) / (next - cur) * 100);
+    var gear = window.Sprites ? window.Sprites.nextGear(level) : null;
     var cleared = data.quests.filter(function (q) { return q.status === 'cleared'; });
     var open = data.quests.filter(function (q) { return q.status === 'active' || q.status === 'submitted'; });
     var trainingsDone = data.trainings.filter(function (t) { return t.done; });
@@ -82,13 +83,14 @@
 
     // ステータス
     html += '<section class="panel status">' +
-      '<div class="avatar" aria-hidden="true">' + esc((data.playerName || '?').slice(0, 1)) + '</div>' +
+      '<div class="avatar"><canvas class="sprite" id="hero-sprite" role="img" aria-label="Lv.' + level + ' の主人公のドット絵"></canvas></div>' +
       '<div class="status-main">' +
         '<p class="player">' + esc(data.playerName) + ' <span class="handle">@' + esc(data.player) + '</span></p>' +
         '<p class="title-line"><span class="lv">Lv.' + level + '</span> <span class="rank-title">' + esc(titleOf(level)) + '</span></p>' +
         '<div class="xpbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '" aria-label="次のレベルまでの経験値">' +
           '<span class="xpfill" style="--w:' + pct + '%"></span></div>' +
         '<p class="xptext">EXP ' + xp + ' ／ 次のレベルまであと ' + (next - xp) + '</p>' +
+        (gear ? '<p class="gear">次の装備：Lv.' + gear.level + ' で「' + esc(gear.name) + '」を手に入れる</p>' : '<p class="gear">すべての装備を手に入れた！</p>') +
       '</div>' +
       '<dl class="counts">' +
         '<div><dt>クエストクリア</dt><dd>' + cleared.length + '</dd></div>' +
@@ -122,6 +124,8 @@
         '</article>';
     }
     html += '<section class="panel"><h2>クエストボード</h2>' +
+      '<div class="mentor-row"><canvas class="sprite sprite-small" id="mentor-sprite" role="img" aria-label="メンター（賢者）のドット絵"></canvas>' +
+      '<p class="bubble">' + (open.length ? 'さあ、次の試練じゃ。期限までに成果を見せておくれ。' : 'よくやった。次のクエストを考えておこう。') + '</p></div>' +
       (open.length ? '<div class="quests">' + open.slice().reverse().map(questCard).join('') + '</div>'
         : '<p class="muted">受注中のクエストはありません。' + esc(data.mentorName) + 'からの次のクエストを待ちましょう。</p>') +
       (cleared.length ? '<details class="cleared"><summary>クリア済みのクエスト（' + cleared.length + '）</summary><div class="quests">' +
@@ -153,5 +157,13 @@
     }).join('') + '</ul></section>';
 
     app.innerHTML = html;
+
+    if (window.Sprites) {
+      window.Sprites.reset();
+      // デモでは ?demo&lv=12 のように書くと、そのレベルの装備で表示できる（見た目の確認用）
+      var lvParam = isDemo && location.search.match(/[?&]lv=(\d+)/);
+      window.Sprites.hero(document.getElementById('hero-sprite'), lvParam ? Number(lvParam[1]) : level);
+      window.Sprites.sage(document.getElementById('mentor-sprite'));
+    }
   }
 })();

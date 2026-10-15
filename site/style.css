@@ -245,3 +245,37 @@ a:hover { text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; }
 }
+
+/* ===== ドット絵のキャラクター ===== */
+.sprite {
+  display: block;
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.avatar { width: 88px; height: 88px; background: #0f1a2b; overflow: hidden; }
+.avatar .sprite { width: 80px; height: 80px; margin-top: 4px; }
+.gear { margin: 2px 0 0; font-size: 12.5px; color: var(--gold); font-family: var(--pixel); }
+.mentor-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.sprite-small { width: 48px; height: 48px; flex: none; }
+.bubble {
+  position: relative;
+  margin: 0;
+  padding: 8px 12px;
+  background: var(--panel-2);
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  font-family: var(--pixel);
+  font-size: 14px;
+}
+.bubble::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  margin-top: -6px;
+  border: 6px solid transparent;
+  border-right-color: var(--line);
+  border-left: 0;
+}
